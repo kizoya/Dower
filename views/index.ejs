@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader TikTok & YouTube</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-green-400">
+    <div class="container mx-auto p-8">
+        <h1 class="text-4xl font-bold mb-4">Downloader TikTok & YouTube</h1>
+        <form id="downloadForm" class="mb-4" method="POST" action="/download">
+            <div class="flex space-x-4">
+                <input type="text" id="url" name="url" placeholder="Masukkan URL" class="flex-1 p-2 border-2 border-green-400 bg-black text-green-400">
+                <select id="platform" name="platform" class="p-2 border-2 border-green-400 bg-black text-green-400">
+                    <option value="youtube">YouTube</option>
+                    <option value="tiktok">TikTok</option>
+                </select>
+            </div>
+            <div id="options" class="mt-4 hidden">
+                <label for="format" class="block mb-2">Pilih format:</label>
+                <select id="format" name="format" class="p-2 border-2 border-green-400 bg-black text-green-400">
+                    <option value="mp4">MP4</option>
+                    <option value="mp3">MP3</option>
+                </select>
+                <label for="resolution" id="resolutionLabel" class="block mt-4 mb-2 hidden">Pilih resolusi:</label>
+                <select id="resolution" name="resolution" class="p-2 border-2 border-green-400 bg-black text-green-400 hidden">
+                    <!-- Resolusi akan diisi secara dinamis -->
+                </select>
+            </div>
+            <button type="submit" class="mt-4 px-4 py-2 bg-green-400 text-black font-bold">Download</button>
+        </form>
+
+        <div id="videoInfo" class="hidden">
+            <img id="thumbnail" class="w-full max-w-xs mx-auto mb-4" src="" alt="Thumbnail">
+            <h2 id="title" class="text-2xl font-bold"></h2>
+            <p id="creator" class="mb-2"></p>
+            <p id="likes" class="mb-2"></p>
+            <p id="views" class="mb-2"></p>
+        </div>
+    </div>
+</body>
+</html>
