@@ -1,25 +1,26 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const TikTokScraper = require('tiktok-scraper');
 const ytdl = require('ytdl-core');
 
 const app = express();
 
-// Middleware
+// Set EJS as the template engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
 
-// Set EJS as templating engine
-app.set('view engine', 'ejs');
-
-// Routes
+// Render index.ejs for the home route
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'TikTok and YouTube Downloader' });
 });
 
-// TikTok API endpoints
+app.get('/api', (req, res) => {
+  res.json({ message: 'TikTok and YouTube Downloader API' });
+});
+
 app.post('/api/tiktok/info', async (req, res) => {
   try {
     const { url } = req.body;
@@ -41,7 +42,6 @@ app.post('/api/tiktok/download', async (req, res) => {
   }
 });
 
-// YouTube API endpoints
 app.post('/api/youtube/info', async (req, res) => {
   try {
     const { url } = req.body;
@@ -67,5 +67,4 @@ app.post('/api/youtube/download', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;
