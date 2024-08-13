@@ -2,7 +2,7 @@ const express = require('express');
 const ejs = require('ejs');
 const axios = require('axios');
 const ytdl = require('ytdl-core');
-const TikTokApi = require('tiktok-api');
+const TikTokScraper = require('tiktok-scraper');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -21,8 +21,8 @@ app.post('/download', async (req, res) => {
         if (platform === 'youtube') {
             videoInfo = await ytdl.getInfo(url);
         } else if (platform === 'tiktok') {
-            const tiktok = new TikTokApi();
-            videoInfo = await tiktok.getVideoInfo(url);
+            const video = await TikTokScraper.getVideoMeta(url);
+            videoInfo = video;
         }
 
         res.json({
