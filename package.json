@@ -12,7 +12,7 @@
     "ejs": "^3.1.9",
     "axios": "^1.4.0",
     "ytdl-core": "^4.9.2",
-    "tiktok-api": "^1.0.0"
+    "tiktok-scraper": "^2.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
