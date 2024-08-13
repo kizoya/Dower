@@ -1,20 +1,28 @@
 {
   "name": "tiktok-youtube-downloader",
   "version": "1.0.0",
-  "description": "TikTok and YouTube video downloader API",
+  "description": "TikTok and YouTube Downloader using Express, EJS, and Tailwind CSS.",
   "main": "server.js",
   "scripts": {
-    "start": "vercel dev",
-    "deploy": "vercel deploy --prod"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "ejs": "^3.1.9",
     "cors": "^2.8.5",
-    "tiktok-scraper": "^1.4.36",
-    "ytdl-core": "^4.9.1"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "tiktok-scraper": "^1.4.25",
+    "ytdl-core": "^4.11.0"
   },
-  "devDependencies": {
-    "vercel": "^23.1.2"
-  }
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "tiktok",
+    "youtube",
+    "downloader",
+    "express",
+    "ejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
 }
