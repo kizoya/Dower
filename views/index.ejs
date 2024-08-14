@@ -1,75 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <%- include('partials/header') %>
-    <title>TikTok & YouTube Downloader</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Tester</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col min-h-screen">
-    <nav class="bg-gradient-to-r from-green-400 to-green-600 p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="https://via.placeholder.com/40x40.png?text=Logo" alt="Logo" class="w-10 h-10 rounded-full border-2 border-white">
-                <span class="text-white font-bold text-xl">Downloader Pro</span>
-            </div>
-            <div class="relative">
-                <button id="dropdownButton" class="text-white hover:text-green-200 focus:outline-none">
-                    <i class="fas fa-ellipsis-v text-2xl"></i>
-                </button>
-                <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-20">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">Donate</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">About Us</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
 
-    <main class="flex-grow flex items-center justify-center p-6">
-        <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-6">
-            <h1 class="text-3xl font-bold mb-6 text-center text-green-400">TikTok & YouTube Downloader</h1>
-            
-            <div class="mb-4">
-                <select id="platform" class="w-full p-2 bg-gray-700 text-green-400 rounded">
-                    <option value="tiktok">TikTok</option>
-                    <option value="youtube">YouTube</option>
-                </select>
+    <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">DDoS Tester</h1>
+        <form action="/test-ddos" method="POST" class="space-y-4">
+            <div>
+                <label for="url" class="block text-sm font-medium">Target URL</label>
+                <input type="text" id="url" name="url" required class="w-full px-3 py-2 bg-gray-700 rounded">
             </div>
-            
-            <div class="mb-4">
-                <input type="text" id="url" placeholder="Paste URL here" class="w-full p-2 bg-gray-700 text-green-400 rounded">
+            <div>
+                <label for="numRequests" class="block text-sm font-medium">Number of Requests</label>
+                <input type="number" id="numRequests" name="numRequests" required class="w-full px-3 py-2 bg-gray-700 rounded" min="1" max="1000">
             </div>
-            
-            <button id="fetch" class="w-full bg-green-500 text-black font-bold py-2 px-4 rounded mb-4 hover:bg-green-600 transition duration-300">
-                Fetch Video Info
-            </button>
-            
-            <div id="video-info" class="hidden mb-4">
-                <div class="flex items-center mb-2">
-                    <img id="profile-pic" class="w-12 h-12 rounded-full mr-4 border-2 border-green-400" src="https://via.placeholder.com/48x48.png?text=Profile" alt="Creator Profile">
-                    <div>
-                        <p id="creator" class="font-bold"></p>
-                        <p id="stats" class="text-sm"></p>
-                    </div>
-                </div>
-                <img id="thumbnail" class="w-full rounded mb-2">
-                <p id="title" class="font-bold"></p>
-            </div>
-            
-            <div id="download-options" class="hidden">
-                <h2 class="text-xl font-bold mb-2">Download Options</h2>
-                <button id="mp3" class="w-full bg-green-500 text-black font-bold py-2 px-4 rounded mb-2 hover:bg-green-600 transition duration-300">
-                    Download MP3
-                </button>
-                <div id="mp4-options">
-                    <!-- MP4 options will be dynamically added here -->
-                </div>
-            </div>
-        </div>
-    </main>
+            <button type="submit" class="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded text-white font-bold">Start Test</button>
+        </form>
 
-    <%- include('partials/footer') %>
+        <% if (typeof responses !== 'undefined') { %>
+        <h2 class="mt-6 text-lg font-semibold">Test Results:</h2>
+        <ul class="mt-4 space-y-2">
+            <% responses.forEach((response, index) => { %>
+            <li class="bg-gray-700 p-3 rounded">
+                <strong>Request <%= index + 1 %>:</strong>
+                <div>Status: <%= response.status %></div>
+                <div><%= response.message || 'Success' %></div>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+    </div>
 
-    <script src="/js/main.js"></script>
 </body>
 </html>
