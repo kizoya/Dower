@@ -1,28 +1,13 @@
 {
-  "name": "tiktok-youtube-downloader",
+  "name": "ddos-tester",
   "version": "1.0.0",
-  "description": "TikTok and YouTube Downloader using Express, EJS, and Tailwind CSS.",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "tiktok-scraper": "^1.4.25",
-    "ytdl-core": "^4.11.0"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "keywords": [
-    "tiktok",
-    "youtube",
-    "downloader",
-    "express",
-    "ejs"
-  ],
-  "author": "Your Name",
-  "license": "MIT"
+    "axios": "^1.5.1"
+  }
 }
